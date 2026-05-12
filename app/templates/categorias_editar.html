@@ -6,7 +6,7 @@
 
 {% block conteudo %}
 
-<form action="/categorias/salvar/" method="post">
+<form action="{% url 'categoria_salvar' %}" method="post">
 
     {% csrf_token %}
 
@@ -22,7 +22,6 @@
 
 
 
-    <!-- CAMPOS DEFINIDOS NO FORMULARIO -->
     {{ form.as_p}}
 
     <br><br>
@@ -35,7 +34,7 @@
         <button class="btn" type="submit">Salvar</button>
     {% endif %}
     &nbsp;
-    <a class="btn-def" href="{% url 'categorias' %}">Cancelar</a>        
+    <a class="btn-def" href="{% url 'categorias_listar' %}">Cancelar</a>        
 
 </form>
 

@@ -9,7 +9,6 @@
 
 </head>
 <body>
-    <!-- CABECALHO DA PAGINA -->
     <a id="a_header" href="/">
         <header>
             <h2>Web Store</h2>
@@ -20,29 +19,24 @@
             </span>
     </header>
     </a>
-    <!-- MENU LATERAL DE NAVEGACAO -->
     <nav>
         <ul>
-            <li>  <a href="{% url 'categorias'  %}">Categorias</a> </li>
-            <li>  <a href="{% url 'produtos' %}">Produtos</a></li>
+            <li>  <a href="{% url 'categorias_listar'  %}">Categorias</a> </li>
+            <li>  <a href="{% url 'produtos_listar' %}">Produtos</a></li>
 
         </ul>
     </nav>
     <!-- CONTEUDO DAS PAGINAS -->
     <main>
-        <!-- Este bloco será utilizado para exiir o título da página -->
         <div id="titulo_pagina">
             {% block titulo_pagina %}
                 Título da Página
             {% endblock %}            
         </div>
-        <!-- Exibe mensagem de ERRO, caso tenha ocorrido algum -->
         {% if ERRO %}
             <h3 class="erro">ERRO: {{ERRO}}</h3>
             <br>
         {% endif %}       
-
-        <!-- Este bloco será utilizado para inserir o conteúdo das páginas. -->
         <div id="conteudo">
             {% block conteudo %}
                 Conteúdo da Página
