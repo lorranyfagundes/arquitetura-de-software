@@ -1,8 +1,10 @@
-from .repositories import CategoriaRepository, ProdutoRepository
+# services.py
+from .factories import WebStoreFactory
 
 class CategoriaService:
     def __init__(self):
-        self.repo = CategoriaRepository()
+        # Agora o Service pede o repositório montado para a Factory
+        self.repo = WebStoreFactory.obter_categoria_repository()
 
     def listar_todas(self):
         return self.repo.listar_todas()
@@ -22,9 +24,10 @@ class CategoriaService:
         else:
             self.repo.alterar(id, descricao)
 
+
 class ProdutoService:
     def __init__(self):
-        self.repo = ProdutoRepository()
+        self.repo = WebStoreFactory.obter_produto_repository()
 
     def listar_todos(self):
         return self.repo.listar_todos()
@@ -48,6 +51,6 @@ class ProdutoService:
         }
 
         if acao == 'Inclusão':
-            self.repo.inserir(**dados)
+            self.repo.inserir(dados['descricao'], dados['preco'], dados['estoque'], dados['categoria_id'])
         else:
-            self.repo.alterar(id, **dados)
+            self.repo.alterar(id, dados['descricao'], dados['preco'], dados['estoque'], dados['categoria_id'])

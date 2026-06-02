@@ -1,5 +1,4 @@
 from django import forms
-from .repositories import CategoriaRepository
 
 class CategoriaForm(forms.Form):
     id = forms.IntegerField(label='ID', widget=forms.TextInput(attrs={'readonly': 'readonly'}), required=False)
@@ -14,5 +13,6 @@ class ProdutoForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        repo_cat = CategoriaRepository()
+        from .factories import WebStoreFactory
+        repo_cat = WebStoreFactory.obter_categoria_repository()
         self.fields['categoria_id'].choices = repo_cat.listar_todas()
